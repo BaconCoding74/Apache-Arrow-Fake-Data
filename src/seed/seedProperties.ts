@@ -1,4 +1,6 @@
-import { faker } from "@faker-js/faker";
+import { T_FORMAT } from "../configs/escapeSequence";
+import { print } from "../middlewares/logger";
+import Property from "../models/Property";
 
 const dummyProperties = [
     {
@@ -90,21 +92,15 @@ const dummyProperties = [
     },
 ];
 
-const generatePropertySale = () => {
-    const property = faker.helpers.arrayElement(dummyProperties)
-    const unit = faker.helpers.arrayElement(property.units);
+const seedProperties = async() => {
+    const existingCount = await Property.countDocuments();
+    if (existingCount > 0) {
+        print(`${T_FORMAT.error}Failed to seed properties because the model already exists.`);
+        return;
+    }
 
-    return {
-        name: property.name,
-        type: property.type,
-        unit: unit.name,
-        size: unit.sqft,
-        price: unit.price,
-    };
+    await Property.insertMany(dummyProperties);
+    console.log("Properties seeded.");
 };
 
-const generatePropertySales = (count = 100) => {
-    return Array.from({length: count}, () => generatePropertySale());
-};
-
-export const dummyData = generatePropertySales(1000);
+export default seedProperties;

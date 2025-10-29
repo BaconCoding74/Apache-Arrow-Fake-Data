@@ -2,9 +2,9 @@ import { NextFunction, Request, Response } from "express";
 import { CONFIGS } from "../configs/config";
 import { writeAppend } from "../utils/fileUtils";
 
-export const print = (message: any, newLine?: boolean) => {
+export const print = (message: any, newLine?: boolean, formatES?: string) => {
     const timestamp = new Date().toISOString();
-    const formattedMessage = `${newLine ? "\n" : ""}${timestamp} [Server]: ${message}`;
+    const formattedMessage = `${formatES ?? ""}${newLine ? "\n" : ""}${timestamp} [Server]: ${message}\x1b[0m`;
 
     // Console output
     console.log(formattedMessage);
