@@ -1,7 +1,13 @@
 import { NextFunction, Request, Response } from "express";
+import { appendFileSync } from "fs";
+import { CONFIGS } from "../configs/config";
+import { writeAppend } from "../utils/fileUtils";
 
 export const print = (message: any) => {
-    console.log(`${new  Date().toISOString()} [Server]: ${message}`)
+    const formattedMessage = `${new  Date().toISOString()} [Server]: ${message}`
+    console.log(formattedMessage);
+    
+    writeAppend(CONFIGS.LOGPATH, formattedMessage);
 };
 
 const logger = (req: Request, res: Response, next: NextFunction) => {

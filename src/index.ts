@@ -1,6 +1,7 @@
 import express from 'express';
 import { CONFIGS } from './configs/config';
 import logger, { print } from './middlewares/logger';
+import { dummyData } from './utils/fakerUtils';
 
 // Create web application
 const app = express();
@@ -9,7 +10,7 @@ const app = express();
 app.use(express.json()); // JSON Parser
 app.use(logger); // Logger
 
-// Routes
+// Routes Middleware
 
 // Start server
 app.listen(CONFIGS.PORT, () => {
