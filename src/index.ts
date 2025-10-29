@@ -15,5 +15,5 @@ app.use("/property-sales", propertySaleRoutes)
 
 // Start server
 app.listen(CONFIGS.PORT, () => {
-    print(`Bababoi Server is listening on ${CONFIGS.PORT}`);
+    print(`Bababoi Server is listening on ${CONFIGS.PORT}`, true);
 });
