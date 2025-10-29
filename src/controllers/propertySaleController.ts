@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
+import ProperytySale from "../models/ProperytySale";
 
-export const getPropertySales = (req: Request, res: Response) => {
-    
+export const getPropertySales = async(req: Request, res: Response) => {
+    const sales = await ProperytySale.find();
+    res.json(sales);
 };
