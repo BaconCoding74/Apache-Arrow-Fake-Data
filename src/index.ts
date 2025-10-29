@@ -1,7 +1,7 @@
 import express from 'express';
 import { CONFIGS } from './configs/config';
 import logger, { print } from './middlewares/logger';
-import { dummyData } from './utils/fakerUtils';
+import propertySaleRoutes from "./routes/propertySales";
 
 // Create web application
 const app = express();
@@ -11,8 +11,9 @@ app.use(express.json()); // JSON Parser
 app.use(logger); // Logger
 
 // Routes Middleware
+app.use("/property-sales", propertySaleRoutes)
 
 // Start server
 app.listen(CONFIGS.PORT, () => {
-    print('Dayum, server booted.');
+    print(`Bababoi Server is listening on ${CONFIGS.PORT}`);
 });

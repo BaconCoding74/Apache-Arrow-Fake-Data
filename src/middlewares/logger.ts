@@ -11,7 +11,7 @@ export const print = (message: any) => {
 };
 
 const logger = (req: Request, res: Response, next: NextFunction) => {
-    print(`${req.method} ${req.url}`);
+    print(`${res.statusCode} ${req.method} ${req.url}`);
     next();
 };
 
